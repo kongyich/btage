@@ -4,7 +4,7 @@
 
 <template>
   <div>
-    {{ isMobileTerminal }}
+    <router-view />
   </div>
 </template>
 
