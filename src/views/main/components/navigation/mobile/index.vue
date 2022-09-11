@@ -9,8 +9,10 @@ import { getCategory } from '@/api/category'
 
 const getCategoryData = async() => {
   const data = await getCategory()
-
+  console.log(data);
 }
+
+getCategoryData()
 </script>
 
 <style>
