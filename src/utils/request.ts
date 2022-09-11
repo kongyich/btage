@@ -15,4 +15,19 @@ service.interceptors.request.use(
   }
 )
 
+
+// 响应拦截器
+// 服务端返回数据之后，前端调用.then之前被调用
+
+service.interceptors.response.use(res => {
+  const { success, message, data } = res.data
+
+  if (success) {
+    return data
+  }
+
+  // 请求错误
+  return Promise.reject(new Error(message))
+})
+
 export default service
