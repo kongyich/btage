@@ -5,5 +5,5 @@ import './styles/index.scss'
 import { useREM } from '@/utils/flexible'
 import mLibs from '@/libs'
 
-useREM()
+// useREM()
 createApp(App).use(router).use(mLibs).mount('#app')
