@@ -26,7 +26,3 @@ const synbolId = computed(()=>`#icon-${props.name}`)
     <use :xlink:href="synbolId" :color="fillClass" :fill="color" />
   </svg>
 </template>
-
-<style>
-
-</style>
