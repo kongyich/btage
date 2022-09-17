@@ -5,11 +5,11 @@
 </template>
 
 <script setup>
-  import { ref } from 'vue' 
-  import { isMobileTerminal } from '@/utils/flexible.ts'
-  import mobileNavigation from './mobile/index.vue'
+import { ref } from 'vue' 
+import { isMobileTerminal } from '@/utils/flexible.ts'
+import mobileNavigation from './mobile/index.vue'
 
-  import { getCategory } from '@/api/category'
+import { getCategory } from '@/api/category'
 import { ALL_CATEGORY_ITEM } from '@/constants'
 
   const categoryData = ref([])
