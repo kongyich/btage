@@ -21,7 +21,3 @@ import { ALL_CATEGORY_ITEM } from '@/constants'
 
   getCategoryData()
 </script>
-
-<style>
-
-</style>
