@@ -2,6 +2,10 @@ module.exports = {
   content: ['./index.html', './src/**/*.{vue,js}'],
   theme: {
     extend: {
+      height: {
+        header: '72px',
+        main: 'calc(100vh - 72px)'
+      },
       fontSize: {
         xs: ['0.25rem', '0.35rem'],
         sm: ['0.35rem', '0.45rem'],

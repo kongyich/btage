@@ -7,5 +7,5 @@ import 'virtual:svg-icons-register'
 // 注册svg-icons
 import mLibs from '@/libs'
 
-// useREM()
+useREM()
 createApp(App).use(router).use(mLibs).mount('#app')
