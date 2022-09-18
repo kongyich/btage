@@ -5,7 +5,7 @@
       <li ref="sliderTarget" :style="sliderStyle" class="absolute h-[22px] bg-zinc-900 rounded-lg duration-200"></li>
 
       <!--汉堡按钮-->
-      <li class="fixed top-0 right-[-1px] h-4 px-1 flex items-center bg-white z-20 shadow-l-white">
+      <li @click="onShawPopup" class="fixed top-0 right-[-1px] h-4 px-1 flex items-center bg-white z-20 shadow-l-white">
         <m-svg-icon class="w-1.5 h-1.5" name="hamburger" />
       </li>
 
@@ -14,6 +14,10 @@
         v-for="(item, index) in data" :key="item.id" class="shrink-0 px-1.5 py-0.5 z-10 duration-200 last:mr-4">{{
         item.name }}</li>
     </ul>
+
+    <m-popup v-model="isVisable">
+      <div>我是内容</div>
+    </m-popup>
   </div>
 </template>
 
@@ -63,5 +67,11 @@ watch(currentCategoryIndex, val => {
 
 const onItemClick = index => {
   currentCategoryIndex.value = index
+}
+
+// 控制popup显示与隐藏
+const isVisable = ref(false)
+const onShawPopup = () => {
+  isVisable.value = true
 }
 </script>
