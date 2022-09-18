@@ -1,6 +1,6 @@
 <script setup>
 import { watch } from '@vue/runtime-core';
-import { useScrollLock } from '@vueuse/core'
+import { useScrollLock, useVModel } from '@vueuse/core'
 
 const props = defineProps({
   modelValue: {
@@ -10,15 +10,16 @@ const props = defineProps({
 })
 
 const emits = defineEmits(["update:modelValue"]);
+const isVisable = useVModel(props)
 
 // 锁定滚动
 const isLocked = useScrollLock(document.body)
 
-watch(() => props.modelValue, val => {
+watch(isVisable, val => {
   isLocked.value = val
 }, {
   immediate: true
-})
+});
 </script>
 
 <template>
@@ -26,13 +27,13 @@ watch(() => props.modelValue, val => {
     <teleport to="body">
       <!--蒙版-->
       <transition name="fade">
-        <div v-if="modelValue" @click="emits('update:modelValue', false)"
+        <div v-if="isVisable" @click="isVisable = false"
           class="w-screen h-screen bg-zinc-900/80 z-40 fixed top-0 left-0"></div>
       </transition>
 
       <!--内容-->
       <transition name="popup-down-up">
-        <div v-if="modelValue" v-bind="$attr" class="w-screen bg-white z-50 fixed bottom-0">
+        <div v-if="isVisable" v-bind="$attr" class="w-screen bg-white z-50 fixed bottom-0">
           <slot />
         </div>
       </transition>
