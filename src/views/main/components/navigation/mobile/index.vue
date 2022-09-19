@@ -53,7 +53,6 @@ onBeforeUpdate(() => {
 const ulTarget = ref(null)
 // 通过 vueuse -> useScroll 获取响应式scroll
 const { x: ulScrollLeft } = useScroll(ulTarget)
-
 const currentCategoryIndex = ref(0)
 
 // watch监听
