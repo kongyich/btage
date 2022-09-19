@@ -20,7 +20,3 @@ defineProps({
 })
 defineEmits(['onItemClick']);
 </script>
-
-<style>
-
-</style>
