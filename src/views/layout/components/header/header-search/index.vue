@@ -3,8 +3,8 @@
 </script>
 
 <template>
-  <div>
-    search
+  <div class=" w-full">
+    <m-search />
   </div>
 </template>
 
