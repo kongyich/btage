@@ -1,4 +1,21 @@
+<script>
+const EMIT_INPUT = 'input';
+</script>
+
 <script setup>
+import { useVModel } from '@vueuse/core'
+
+const props = defineProps({
+  modelValue: {
+    type: String,
+    required: true
+  }
+})
+
+const emits = defineEmits([EMIT_INPUT])
+
+const inputValue = useVModel(props);
+
 </script>
 
 <template>
@@ -16,7 +33,7 @@
       <m-svg-icon name="search" color="#707070" class="w-1.5 h-1.5 absolute translate-y-[-50%] top-[50%] left-2" />
 
       <!-- 输入框 -->
-      <input class="
+      <input v-model="inputValue" class="
           block
           w-full
           text-sm
@@ -64,7 +81,7 @@
 
       <!-- TODO: 搜索按钮（通用组件） -->
       <m-button class="absolute translate-y-[-50%]
-          top-[50%] right-1 rounded-full" icon="search" iconColor="#ffffff" />
+          top-[50%] right-1 rounded-full duration-1000" icon="search" iconColor="#ffffff" />
     </div>
 
     <!-- 下拉区域 -->
