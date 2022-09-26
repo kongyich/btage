@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { isMobileTerminal } from './utils/flexible'
+import { isMobileTerminal } from './utils/flexible'
 </script>
 
 <template>
@@ -9,4 +9,5 @@
 </template>
 
 <style scoped>
+
 </style>

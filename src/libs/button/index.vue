@@ -1,6 +1,8 @@
 <script>
 import { computed } from 'vue'
 
+const EMITS_CLICK = 'click'
+
 // type 可选项： 表示按钮风格
 const typeEnum = {
   primary: 'text-white  bg-zinc-800 dark:bg-zinc-900  hover:bg-zinc-900 dark:hover:bg-zinc-700 active:bg-zinc-800 dark:active:bg-zinc-700',
@@ -75,6 +77,13 @@ const props = defineProps({
   }
 });
 
+const emits = defineEmits([EMITS_CLICK])
+
+const onBtnClick = () => {
+  if (props.isLoading) return
+  emits(EMITS_CLICK)
+}
+
 // 处理大小的key值
 const sizeKey = computed(() => {
   return props.icon ? 'icon-' + props.size : props.size
@@ -82,8 +91,18 @@ const sizeKey = computed(() => {
 </script>
 
 <template>
-  <button class="text-sm text-center rounded duration-150 flex justify-center items-center"
+  <button @click="onBtnClick" class="text-sm text-center rounded duration-150 flex justify-center items-center"
     :class="[typeEnum[type], sizeEnum[sizeKey].button, { 'active:scale-105': isActiveAnim }]">
+
+    <!-- loading -->
+    <m-svg-icon v-if="isLoading" name="loading" class="w-2 h-2 animate-spin mr-1" />
+
+    <!-- icon按钮 -->
+    <m-svg-icon v-if="icon" :name="icon" class="m-auto" :class="sizeEnum[sizeKey].icon" :color="iconColor"
+      :fillClass="iconClass"></m-svg-icon>
+
+    <!-- 文字按钮 -->
+    <slot v-else />
 
   </button>
 </template>

@@ -63,6 +63,8 @@
         "></div>
 
       <!-- TODO: 搜索按钮（通用组件） -->
+      <m-button class="absolute translate-y-[-50%]
+          top-[50%] right-1 rounded-full" icon="search" iconColor="#ffffff" />
     </div>
 
     <!-- 下拉区域 -->
