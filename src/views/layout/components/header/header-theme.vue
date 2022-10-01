@@ -26,7 +26,7 @@ const onItemClick = () => { }
 </script>
 
 <template>
-  <m-popover placement="top_left">
+  <m-popover placement="bottom_left">
     <template #reference>
       <m-svg-icon :name="svgIconName"
         class="guide-theme w-4 h-4 p-1 cursor-pointer rounded-sm duration-200 outline-none hover:bg-zinc-100/60 dark:hover:bg-zinc-900"

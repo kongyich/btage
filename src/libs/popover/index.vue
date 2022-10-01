@@ -1,7 +1,8 @@
 <script>
+const DELAY_TIME = 100
 const PROP_TOP_LEFT = 'top_left'
 const PROP_TOP_RIGHT = 'top_right'
-const PROP_BOTTOM_LEFT = 'bottom+left'
+const PROP_BOTTOM_LEFT = 'bottom_left'
 const PROP_BOTTOM_RIGHT = 'bottom_right'
 
 // 定义指定位置Enum
@@ -32,9 +33,20 @@ const props = defineProps({
 })
 
 let isVisable = ref(false)
+let timer
 
-const onMouseLeave = () => { isVisable.value = false }
-const onMouseEnter = () => { isVisable.value = true };
+const onMouseLeave = () => {
+  timer = setTimeout(() => {
+    isVisable.value = false
+    timer = null
+  }, DELAY_TIME)
+}
+const onMouseEnter = () => {
+  if (timer) {
+    clearTimeout(timer)
+  }
+  isVisable.value = true
+};
 
 const referenceTarget = ref(null);
 const contentTarget = ref(null);
