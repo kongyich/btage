@@ -1,6 +1,7 @@
 <template>
   <div>
     <mobile-navigation v-if="isMobileTerminal" />
+    <pc-navigation />
   </div>
 </template>
 
@@ -8,6 +9,7 @@
 // import { ref } from 'vue' 
 import { isMobileTerminal } from '@/utils/flexible.ts'
 import mobileNavigation from './mobile/index.vue'
+import pcNavigation from './pc/index.vue'
 import { useStore } from 'vuex'
 
 const store = useStore()
