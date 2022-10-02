@@ -1,5 +1,7 @@
 <script setup>
 import { TYPE_LIGHT, TYPE_DARK, TYPE_THEME } from '@/constants'
+
+let svgIconName = 'theme-light'
 // 构建渲染数据
 const themeAry = [
   {
