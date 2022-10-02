@@ -11,12 +11,13 @@
 
       <!--item-->
       <li :ref="setItemRef" :class="{ 'text-zinc-100' : currentCategoryIndex === index }" @click="onItemClick(index)"
-        v-for="(item, index) in data" :key="item.id" class="shrink-0 px-1.5 py-0.5 z-10 duration-200 last:mr-4">{{
+        v-for="(item, index) in $store.getters.categorys" :key="item.id"
+        class="shrink-0 px-1.5 py-0.5 z-10 duration-200 last:mr-4">{{
         item.name }}</li>
     </ul>
 
     <m-popup v-model="isVisable">
-      <Menu :categorys="data" @onItemClick="onItemClick" />
+      <Menu @onItemClick="onItemClick" />
     </m-popup>
   </div>
 </template>
@@ -25,13 +26,6 @@
 import { onBeforeUpdate, watch, ref } from 'vue'
 import { useScroll } from '@vueuse/core'
 import Menu from '@/views/main/components/menu/index.vue'
-
-defineProps({
-  data: {
-    type: Array,
-    required: true
-  }
-})
 
 const sliderStyle = ref({
   transform: 'translateX(0px)',
