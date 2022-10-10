@@ -49,6 +49,9 @@ const onItemClick = () => { }
 </template>
 
 // 1. 监听主题的切换行为
+// 2. 根据行为保存当前所需要展示的主题到vuex
+// 3. 根据vuex中保存的当前主题，展示 header-theme 下的显示图标
+// 4. 根据vuex中保存的当前主题，修改html的class
 
 <style>
 
