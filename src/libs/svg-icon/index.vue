@@ -18,11 +18,11 @@ const props = defineProps({
 })
 
 // 显示真实的svg图标 （拼接icon-xx）
-const synbolId = computed(()=>`#icon-${props.name}`)
+const synbolId = computed(() => `#icon-${props.name}`);
 </script>
 
 <template>
   <svg aria-hidden="true">
-    <use :xlink:href="synbolId" :color="fillClass" :fill="color" />
+    <use :xlink:href="synbolId" :class="fillClass" :fill="color" />
   </svg>
 </template>
