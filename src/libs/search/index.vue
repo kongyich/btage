@@ -1,5 +1,6 @@
 <template>
-  <div ref="containerTarget" class="group relative p-0.5 rounded-xl border-white duration-500 hover:bg-red-100/40">
+  <div ref="containerTarget"
+    class="group relative p-0.5 rounded-xl border-white dark:border-zinc-200 duration-500 hover:bg-red-100/40">
     <div>
       <!-- 搜索图标 -->
       <m-svg-icon class="w-1.5 h-1.5 absolute translate-y-[-50%] top-[50%] left-2" name="search" color="#707070" />
