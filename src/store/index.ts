@@ -1,11 +1,13 @@
 import { createStore } from 'vuex'
 import getters from './getters'
 import category from './modules/category'
+import theme from './modules/theme'
 import createPersistedstate from 'vuex-persistedstate'
 
 const store = createStore({
   getters,
   modules: {
+    theme,
     category
   },
   plugins: [
@@ -13,7 +15,7 @@ const store = createStore({
       // 指定保存到 localStorge 中的key
       key: 'categorys',
       // 需要保存的模块
-      paths: ['category']
+      paths: ['category', 'theme']
     })
   ]
 })
