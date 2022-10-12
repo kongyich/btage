@@ -1,7 +1,8 @@
 <script setup>
 import { TYPE_LIGHT, TYPE_DARK, TYPE_THEME } from '@/constants'
+import { computed } from '@vue/runtime-core'
+import { useStore } from 'vuex'
 
-let svgIconName = 'theme-light'
 // 构建渲染数据
 const themeAry = [
   {
@@ -23,8 +24,18 @@ const themeAry = [
     name: '跟随系统'
   },
 ]
+const store = useStore()
+const onItemClick = themeItem => {
+  store.commit('changeThemeType', themeItem.type)
+}
 
-const onItemClick = () => { }
+// 展示图标
+const svgIconName = computed(() => {
+  const findTheme = themeAry.find(item => {
+    return item.type === store.getters.themeType
+  })
+  return findTheme?.icon
+});
 </script>
 
 <template>
