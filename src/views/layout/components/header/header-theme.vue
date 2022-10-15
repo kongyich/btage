@@ -1,5 +1,5 @@
 <script setup>
-import { TYPE_LIGHT, TYPE_DARK, TYPE_THEME } from '@/constants'
+import { TYPE_LIGHT, TYPE_DARK, TYPE_SYSTEM } from '@/constants'
 import { computed } from '@vue/runtime-core'
 import { useStore } from 'vuex'
 
@@ -19,7 +19,7 @@ const themeAry = [
   },
   {
     id: 2,
-    type: TYPE_THEME,
+    type: TYPE_SYSTEM,
     icon: 'theme-system',
     name: '跟随系统'
   },
