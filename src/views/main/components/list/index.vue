@@ -21,7 +21,13 @@ getPexlesData()
 
 <template>
   <div>
-    <item-vue v-for="item in pexelsList" :key="item.id" :data="item" />
+    <m-waterfall :data="pexelsList" nodeKey="id" :column="5" :picturePreReading="true">
+      <template>
+        <item-vue :data="item" />
+      </template>
+
+    </m-waterfall>
+
   </div>
 </template>
 

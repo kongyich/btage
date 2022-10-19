@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 
 const props = defineProps({
   // 数据源
@@ -31,6 +31,57 @@ const props = defineProps({
     type: Boolean,
     default: true
   }
+});
+
+// 容器的总高度 = 最高一列的高度
+const containerHeight = ref(0)
+// 记录每列高度的容器 key：所在列 val：列高
+const columnHeightObj = ref({})
+
+// 构建记录每列高度的对象
+const useColumnHeightObj = () => {
+  columnHeightObj.value = {}
+  for (let i = 0; i < props.column; i++) {
+    columnHeightObj.value[i] = 0
+  }
+}
+
+// 容器实例
+const containerTarget = ref(null)
+// 容器总宽度（不包含padding，margin，border）
+const containerWidth = ref(0)
+// 容器的左边距，计算item的left
+const containerLeft = ref(0)
+
+// 计算容器宽度
+const useContainerWidth = () => {
+  const { paddingLeft, paddingRight } = getComputedStyle(containerTarget.value, null)
+
+  // 容器左边距
+  containerLeft.value = parseFloat(paddingLeft)
+  // 容器的宽度
+  containerWidth.value = containerTarget.value.offsetWidth - parseFloat(paddingLeft) - parseFloat(paddingRight)
+};
+
+// 列宽 = （容器的宽度 - 所有列间距的宽度） / 列数
+const columnWidth = ref(0)
+
+// 列间距的合计
+const columnSpaceingTotal = computed(() => {
+  return (props.column - 1) * props.columnSpacing
+})
+
+// 计算列宽
+const useColumnWidth = () => {
+  // 计算容器的宽度
+  useContainerWidth()
+  // 计算列宽
+  columnWidth.value = (containerWidth.value - columnSpaceingTotal.value) / props.column
+}
+
+onMounted(() => {
+  useColumnWidth()
+  console.log(columnWidth);
 });
 </script>
 
