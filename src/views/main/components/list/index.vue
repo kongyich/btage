@@ -22,8 +22,8 @@ getPexlesData()
 <template>
   <div>
     <m-waterfall :data="pexelsList" nodeKey="id" :column="5" :picturePreReading="true">
-      <template>
-        <item-vue :data="item" />
+      <template v-slot="{ item, width }">
+        <itemVue :data="item" :width="width" @click="onToPins" />
       </template>
 
     </m-waterfall>

@@ -8,7 +8,7 @@ defineProps({
 </script>
 
 <template>
-  <div class="bg-white dark:bg-zinc-900 xl:dark:bg-zinc-800 rounded pb-1 h-[280px] w-[230px]">
+  <div class="bg-white dark:bg-zinc-900 xl:dark:bg-zinc-800 rounded pb-1">
     <div class="relative w-full rounded cursor-zoom-in group">
       <img class="w-full rounded bg-transparent" :src="data.photo" alt="">
 
