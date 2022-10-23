@@ -1,6 +1,6 @@
 <script setup>
-import { computed, onMounted, ref, watch, nextTick } from 'vue'
-import { getImgElements, getAllImg, onComplateImgs } from './utils'
+import { computed, onMounted, ref, watch, nextTick, onUnmounted } from 'vue'
+import { getImgElements, getAllImg, onComplateImgs, getMinHeightColumn, getMinHeight, getMaxHeight } from './utils'
 
 const props = defineProps({
   // 数据源
@@ -130,7 +130,57 @@ const useItemHeight = () => {
 
 // 渲染位置
 const useItemLocation = () => {
-  console.log(itemHeights)
+  // 遍历数据源
+  props.data.forEach((item, index) => {
+    // 避免重复计算
+    if (item._style) {
+      return
+    }
+
+    // 生成 style属性
+    item._style = {}
+    // left
+    item._style.left = getItemLeft()
+    // top
+    item._style.top = getItemTop()
+
+    // 指定列高度的自增
+    increasingHeight(index)
+  })
+
+  // 指定容器高度
+  containerHeight.value = getMaxHeight(columnHeightObj.value)
+}
+
+
+// 在组建销毁的时候，清除所有的_style
+onUnmounted(() => {
+  props.data.forEach(item => {
+    delete item._style
+  })
+})
+
+
+// 返回下一个item的left
+const getItemLeft = () => {
+  // 拿到最小宽度的列
+  const column = getMinHeightColumn(columnHeightObj.value)
+
+  return column * (columnWidth.value + props.columnSpacing) + containerLeft.value
+}
+
+// 返回下一个item的top
+const getItemTop = () => {
+  return getMinHeight(columnHeightObj.value)
+}
+
+// 指定列高度自增
+const increasingHeight = function (index) {
+  // 最小高度所在列
+  const minHeightColumn = getMinHeightColumn(columnHeightObj.value)
+
+  // 使该列自增
+  columnHeightObj.value[minHeightColumn] += itemHeights[index] + props.rowSpacing
 }
 
 // 触发计算

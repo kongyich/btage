@@ -39,8 +39,15 @@ export const onComplateImgs = imgs => {
 // 返回列高对象中的最小高度
 export const getMinHeight = columnHeightObj => {
   const columnHeightArr = Object.values(columnHeightObj)
-  return Math.min(columnHeightArr)
+  return Math.min(...columnHeightArr)
 }
+
+// 返回列高对象中的最大高度
+export const getMaxHeight = columnHeightObj => {
+  const columnHeightArr = Object.values(columnHeightObj)
+  return Math.max(...columnHeightArr)
+}
+
 
 
 // 返回列高对象中最小高度所在列
