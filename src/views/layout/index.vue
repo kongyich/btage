@@ -7,7 +7,9 @@ import Floating from "./components/floating.vue"
 <template>
   <div class="h-screen">
     <headers class="h-header" />
-    <mains class="h-main" />
+    <div class="h-main">
+      <mains />
+    </div>
     <floating />
   </div>
 </template>
