@@ -14,8 +14,6 @@ import Floating from "./components/floating.vue"
   </div>
 </template>
 
-
-
 <style>
 
 </style>
