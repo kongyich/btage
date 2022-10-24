@@ -1,7 +1,7 @@
 <template>
   <div>
     <mobile-navigation v-if="isMobileTerminal" />
-    <pc-navigation />
+    <pc-navigation v-else />
   </div>
 </template>
 
