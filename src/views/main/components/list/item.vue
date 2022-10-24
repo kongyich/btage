@@ -3,6 +3,9 @@ defineProps({
   data: {
     type: Object,
     required: true
+  },
+  width: {
+    type: Number
   }
 });
 </script>
@@ -10,7 +13,9 @@ defineProps({
 <template>
   <div class="bg-white dark:bg-zinc-900 xl:dark:bg-zinc-800 rounded pb-1">
     <div class="relative w-full rounded cursor-zoom-in group">
-      <img class="w-full rounded bg-transparent" :src="data.photo" alt="">
+      <img class="w-full rounded bg-transparent" :src="data.photo" :style="{
+        height: (width / data.photoWidth) * data.photoHeight + 'px'
+      }" alt="">
 
       <!-- 遮罩层 -->
       <div
