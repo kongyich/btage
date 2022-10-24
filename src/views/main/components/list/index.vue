@@ -23,7 +23,7 @@ getPexlesData()
 <template>
   <div>
     <m-waterfall class="flex-1 w-full" :data="pexelsList" nodeKey="id" :column="isMobileTerminal ? 2 : 5"
-      :picturePreReading="true">
+      :picturePreReading="false">
       <template v-slot="{ item, width }">
         <itemVue :data="item" :width="width" @click="onToPins" />
       </template>
