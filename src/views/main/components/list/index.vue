@@ -14,7 +14,6 @@ let query = {
 const getPexlesData = async () => {
   const res = await getPexlesList(query)
   pexelsList.value = res.list
-  console.log(res);
 }
 
 getPexlesData()
