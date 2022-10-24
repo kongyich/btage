@@ -270,7 +270,7 @@ watch(
       reset()
     }
   }
-)
+);
 </script>
 
 <style lang="scss" scoped>
