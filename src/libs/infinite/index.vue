@@ -48,16 +48,16 @@ useIntersectionObserver(loadingTarget, ([{ isIntersecting }]) => {
 
 // 触发load事件
 const emitLoad = () => {
-  // 当加载更多视图可见时 && loading 为 false && 数据尚未全部加载完毕 处理加载更多的逻辑
-  if (targetIsIntersecting.value && !loading.value && !props.isFinished) {
-    // 修改加载数据标记
-    loading.value = true
-    // 触发加载更多行为
-    emits('onLoad')
-  }
+  setTimeout(() => {
+    // 当加载更多视图可见时 && loading 为 false && 数据尚未全部加载完毕 处理加载更多的逻辑
+    if (targetIsIntersecting.value && !loading.value && !props.isFinished) {
+      // 修改加载数据标记
+      loading.value = true
+      // 触发加载更多行为
+      emits('onLoad')
+    }
+  }, 100)
 }
-
-
 // 监听load的变化，解决数据加载完成之后，数据未铺满全屏的问题
 watch(loading, emitLoad);
 </script>
