@@ -9,9 +9,13 @@ export default {
     // 2. 把img的src变为空
     el.src = ''
 
-    useIntersectionObserver(el, ([{ isIntersecting }]) => {
+    const { stop } = useIntersectionObserver(el, ([{ isIntersecting }]) => {
       if (isIntersecting) {
+        // 当图片可见时，加载图片
+        el.src = imgSrc
 
+        // 停止监听
+        stop()
       }
     })
     console.log(el);
