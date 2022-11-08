@@ -36,13 +36,22 @@ const emits = defineEmits([EMITS_ITEM_CLICK])
 const onItemClick = item => {
   emits(EMITS_ITEM_CLICK, item)
 }
+
+// 处理关键字高亮，生成高亮标签
+const highLightText = text => {
+  // 正则 表达式 从显示文本中找到与用户输入文本相同的内容，使用高亮标签进行替换
+  const highlightStr = `<span class="text-zinc-900 dark:text-zinc-200">${props.searchText}</span>`
+  const reg = new RegExp(props.searchText, 'gi')
+  // 替换
+  return text.replace(reg, highlightStr)
+}
 </script>
 
 <template>
   <div>
     <div v-for="(item, index) in hintData" :key="index" @click="onItemClick(item)"
-      class="py-1 pl-1 text-base font-bold text-zinc-500 rounded cursor-pointer duration-300 hover:bg-zinc-200 dark:hover:bg-zinc-900">
-      {{ item }}
+      class="py-1 pl-1 text-base font-bold text-zinc-500 rounded cursor-pointer duration-300 hover:bg-zinc-200 dark:hover:bg-zinc-900"
+      v-html="highLightText(item)">
     </div>
   </div>
 </template>
