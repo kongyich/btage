@@ -6,6 +6,7 @@ const EMITS_ITEM_CLICK = 'itemClick';
 <script setup>
 import { getHint } from '@/api/pexels'
 import { watch, ref } from 'vue';
+import { watchDebounced } from '@vueuse/core'
 const props = defineProps({
   searchText: {
     type: String,
@@ -24,8 +25,10 @@ const getHintData = async () => {
 }
 
 // watch 可以监听响应式数据或者一个包含 getter 的数据
-watch(() => props.searchText, getHintData, {
-  immediate: true
+watchDebounced(() => props.searchText, getHintData, {
+  immediate: true,
+  // 每次事件触发时，延迟的时间
+  debounce: 500
 });
 
 const emits = defineEmits([EMITS_ITEM_CLICK])
