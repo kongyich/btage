@@ -7,3 +7,13 @@ export const getPexlesList = data => {
     params: data
   })
 }
+
+// 获取搜索提示
+export const getHint = q => {
+  return request({
+    url: '/pexels/hint',
+    params: {
+      q
+    }
+  })
+}
