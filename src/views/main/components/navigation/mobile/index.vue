@@ -12,8 +12,8 @@
       </li>
 
       <!--item-->
-      <li :ref="setItemRef" :class="{ 'text-zinc-100' : currentCategoryIndex === index }" @click="onItemClick(index)"
-        v-for="(item, index) in $store.getters.categorys" :key="item.id"
+      <li :ref="setItemRef" :class="{ 'text-zinc-100' : $store.getters.currentCategoryIndex === index }"
+        @click="onItemClick(item)" v-for="(item, index) in $store.getters.categorys" :key="item.id"
         class="shrink-0 px-1.5 py-0.5 z-10 duration-200 last:mr-4">{{
         item.name }}</li>
     </ul>
@@ -25,6 +25,7 @@
 </template>
 
 <script setup>
+import { useStore } from 'vuex'
 import { onBeforeUpdate, watch, ref } from 'vue'
 import { useScroll } from '@vueuse/core'
 import Menu from '@/views/main/components/menu/index.vue'
@@ -46,13 +47,14 @@ onBeforeUpdate(() => {
   itemRefs = []
 })
 
+const store = useStore()
+
 const ulTarget = ref(null)
 // 通过 vueuse -> useScroll 获取响应式scroll
 const { x: ulScrollLeft } = useScroll(ulTarget)
-const currentCategoryIndex = ref(0)
 
 // watch监听
-watch(currentCategoryIndex, val => {
+watch(() => store.getters.currentCategoryIndex, val => {
   const { left, width } = itemRefs[val].getBoundingClientRect()
   sliderStyle.value = {
     // 滑块的位置 = ul 横向滚动的位置 + 当前元素的left
@@ -61,8 +63,9 @@ watch(currentCategoryIndex, val => {
   }
 })
 
-const onItemClick = index => {
-  currentCategoryIndex.value = index
+const onItemClick = item => {
+  store.commit('changeCurrentCategory', item)
+  // currentCategoryIndex.value = index
   isVisable.value = false
 }
 

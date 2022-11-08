@@ -3,8 +3,11 @@ import { getPexlesList } from '@/api/pexels'
 import { ref } from '@vue/reactivity'
 import { isMobileTerminal } from '@/utils/flexible'
 import itemVue from './item.vue'
+import { useStore } from 'vuex'
+import { watch } from '@vue/runtime-core'
 
 const pexelsList = ref([])
+const store = useStore()
 
 let query = {
   page: 1,
@@ -45,6 +48,22 @@ const getPexlesData = async () => {
   loading.value = false
 
 }
+
+// 通过此方法修改query，重新发起请求
+const resetQuery = newQuery => {
+  query = { ...query, ...newQuery }
+  // 重置状态
+  isFinished.value = false
+  pexelsList.value = []
+}
+
+// 监听变化
+watch(() => store.getters.currentCategory, currentCategory => {
+  resetQuery({
+    page: 1,
+    categoryId: currentCategory.id
+  })
+})
 
 getPexlesData()
 </script>

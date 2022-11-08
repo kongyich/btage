@@ -1,9 +1,8 @@
 import lazy from './modules/lazy'
 
 // 全局注册指令
-
 export default {
-  install(app) {
+  install(app: any) {
     const directives = import.meta.glob('./modules/*.ts')
 
     for (const [key, value] of Object.entries(directives)) {
