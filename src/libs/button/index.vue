@@ -1,5 +1,6 @@
 <script>
 import { computed } from 'vue'
+import mSvgIcon from '../svg-icon/index.vue'
 
 const EMITS_CLICK = 'click'
 

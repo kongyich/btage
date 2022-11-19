@@ -23,11 +23,17 @@ const EMITS_ITEM_CLICK = 'itemClick';
 </script>
 <script setup>
 import { useStore } from 'vuex'
+import { confirm } from '@/libs'
 const store = useStore()
 
 // 删除全部
 const onDeleteAllClick = () => {
-  store.commit('deleteAllHistory')
+  confirm('标题', '你要删除所有的记录吗？', '不删了', '还是删').then(() => {
+    store.commit('deleteAllHistory')
+  })
+    .catch(() => {
+      console.log('取消了');
+    })
 }
 
 // 删除单个
