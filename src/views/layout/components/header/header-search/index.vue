@@ -2,6 +2,7 @@
 import { ref } from "@vue/reactivity";
 import hintVue from './hint.vue'
 import historyVue from './history.vue'
+import themeVue from './theme.vue'
 import { useStore } from 'vuex'
 const inputVal = ref('');
 const store = useStore()
@@ -26,6 +27,8 @@ const onSearchHandler = val => {
           <!-- 最近搜索 -->
           <history-vue v-show="!inputVal" @itemClick="onSearchHandler"></history-vue>
 
+          <!-- 推荐主题 -->
+          <theme-vue v-show="!inputVal" />
         </div>
       </template>
     </m-search>
