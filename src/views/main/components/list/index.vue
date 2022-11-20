@@ -65,6 +65,15 @@ watch(() => store.getters.currentCategory, currentCategory => {
   })
 })
 
+
+// 监听searchText的变化
+watch(() => store.getters.searchText, val => {
+  resetQuery({
+    page: 1,
+    searchText: val
+  })
+})
+
 getPexlesData()
 </script>
 

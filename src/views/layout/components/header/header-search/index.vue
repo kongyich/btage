@@ -12,6 +12,9 @@ const onSearchHandler = val => {
   inputVal.value = val
   if (val) {
     store.commit('addHistory', val)
+
+    // 触发searchText变化
+    store.commit('changeSearchText', val)
   }
 };
 </script>
