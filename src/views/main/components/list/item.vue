@@ -1,5 +1,6 @@
 <script setup>
-defineProps({
+import { saveAs } from 'file-saver'
+const props = defineProps({
   data: {
     type: Object,
     required: true
@@ -8,6 +9,12 @@ defineProps({
     type: Number
   }
 });
+
+// 下载按钮点击事件
+const onDownload = () => {
+  // 1. 下载的图片链接
+  saveAs(props.data.photoDownLink)
+}
 </script>
 
 <template>
