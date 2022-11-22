@@ -1,6 +1,8 @@
 <script setup>
 import { saveAs } from 'file-saver'
 import { message } from '@/libs'
+import { ref } from 'vue'
+import { useFullscreen } from '@vueuse/core';
 const props = defineProps({
   data: {
     type: Object,
@@ -20,12 +22,16 @@ const onDownload = () => {
     saveAs(props.data.photoDownLink)
   }, 100)
 }
+
+// 生成全屏
+const imgTarget = ref(null)
+const { enter: onImgFullScreen } = useFullscreen(imgTarget);
 </script>
 
 <template>
   <div class="bg-white dark:bg-zinc-900 xl:dark:bg-zinc-800 rounded pb-1">
     <div class="relative w-full rounded cursor-zoom-in group">
-      <img v-lazy class="w-full rounded bg-transparent" :src="data.photo" :style="{
+      <img v-lazy ref="imgTarget" class="w-full rounded bg-transparent" :src="data.photo" :style="{
         height: (width / data.photoWidth) * data.photoHeight + 'px'
       }" alt="">
 
@@ -38,7 +44,7 @@ const onDownload = () => {
         <m-button class="absolute bottom-1.5 left-1.5 bg-zinc-100/70" type="info" size="small" icon="download"
           iconClass="fill-zinc-900 dark:fill-zinc-200" @click="onDownload" />
         <m-button class="absolute bottom-1.5 right-1.5 bg-zinc-100/70" type="info" size="small" icon="full"
-          iconClass="fill-zinc-900 dark:fill-zinc-200"></m-button>
+          iconClass="fill-zinc-900 dark:fill-zinc-200" @click="onImgFullScreen"></m-button>
       </div>
     </div>
 
