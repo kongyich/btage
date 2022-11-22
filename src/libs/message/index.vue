@@ -17,7 +17,7 @@ import mSvgIcon from '../svg-icon/index.vue'
 /**
  * 消息类型可选项
  */
-const typeEnum = ['success', 'warn', 'error']
+const typeEnum = ['success', 'warn', 'error'];
 </script>
 
 <script setup>
@@ -91,6 +91,8 @@ const isVisable = ref(false)
 /**
  * 保证动画展示，需要在 mounted 之后进行展示
  */
+
+const animDuration = '0.5s'
 onMounted(() => {
   isVisable.value = true
   /**
@@ -98,14 +100,20 @@ onMounted(() => {
    */
   setTimeout(() => {
     isVisable.value = false
+
+    setTimeout(() => {
+      if (props.destroy) {
+        props.destroy()
+      }
+    }, parseInt(animDuration.replace('0.', '').replace('s', '')) * 100)
   }, props.duration)
-})
+});
 </script>
 
 <style lang="scss" scoped>
 .down-enter-active,
 .down-leave-active {
-  transition: all 0.5s;
+  transition: all v-bind(animDuration);
 }
 
 .down-enter-from,

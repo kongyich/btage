@@ -1,5 +1,6 @@
 <script setup>
 import { saveAs } from 'file-saver'
+import { message } from '@/libs'
 const props = defineProps({
   data: {
     type: Object,
@@ -12,8 +13,12 @@ const props = defineProps({
 
 // 下载按钮点击事件
 const onDownload = () => {
+  message('success', '图片开始下载')
   // 1. 下载的图片链接
-  saveAs(props.data.photoDownLink)
+
+  setTimeout(() => {
+    saveAs(props.data.photoDownLink)
+  }, 100)
 }
 </script>
 
