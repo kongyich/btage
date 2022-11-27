@@ -19,7 +19,7 @@ const menuAry = [
     icon: 'logout',
     path: ''
   }
-]
+];
 </script>
 
 <template>
