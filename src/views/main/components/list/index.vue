@@ -75,6 +75,12 @@ watch(() => store.getters.searchText, val => {
 })
 
 getPexlesData()
+
+const onToPins = items => {
+  console.log(items);
+  // 修改浏览器url
+  history.pushState(null, null, `pins/${items.id}`)
+}
 </script>
 
 <template>

@@ -26,11 +26,18 @@ const onDownload = () => {
 // 生成全屏
 const imgTarget = ref(null)
 const { enter: onImgFullScreen } = useFullscreen(imgTarget);
+
+const emits = defineEmits('click')
+const onToPinsClick = () => {
+  emits('click', {
+    id: props.data.id
+  })
+}
 </script>
 
 <template>
   <div class="bg-white dark:bg-zinc-900 xl:dark:bg-zinc-800 rounded pb-1">
-    <div class="relative w-full rounded cursor-zoom-in group">
+    <div class="relative w-full rounded cursor-zoom-in group" @click="onToPinsClick">
       <img v-lazy ref="imgTarget" class="w-full rounded bg-transparent" :src="data.photo" :style="{
         height: (width / data.photoWidth) * data.photoHeight + 'px'
       }" alt="">
