@@ -20,7 +20,7 @@ const onSearchHandler = val => {
 </script>
 
 <template>
-  <div class="w-full">
+  <div class="guide-search w-full">
     <m-search v-model="inputVal">
       <template #dropdown>
         <div>

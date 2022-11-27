@@ -46,7 +46,7 @@ const menuAry = [
         <m-svg-icon :name="item.icon" class="w-1.5 h-1.5 mr-1" fillClass="fill-zinc-900 dark:fill-zinc-300">
         </m-svg-icon>
         <span class="text-zinc-800 dark:text-zinc-300 text-sm">{{
-        item.title
+            item.title
         }}</span>
       </div>
     </div>

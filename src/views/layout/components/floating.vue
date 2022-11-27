@@ -1,7 +1,3 @@
-<script setup>
-
-</script>
-
 <template>
   <div class="fixed bottom-10 right-2">
     <!-- 引导页 -->
@@ -33,6 +29,46 @@
   </div>
 </template>
 
-<style>
+<script setup>
+import Driver from 'driver.js'
+import 'driver.js/dist/driver.min.css'
+import steps from './steps'
+import { onMounted } from 'vue'
+// import { FEEDBACK_URL } from '@/constants'
 
+/**
+ * 引导页处理
+ */
+let driver = null
+onMounted(() => {
+  driver = new Driver({
+    // 禁止点击蒙版关闭
+    allowClose: false,
+    closeBtnText: '关闭',
+    nextBtnText: '下一个',
+    prevBtnText: '上一个'
+  })
+})
+
+/**
+ * 开始引导
+ */
+const onGuideClick = () => {
+  driver.defineSteps(steps)
+  driver.start()
+}
+
+/**
+ * 反馈处理
+ */
+// const onToFeedback = () => {
+//   window.open(FEEDBACK_URL, '_blank')
+// }
+</script>
+
+<style lang="scss" scoped>
+.driver-fix-stacking {
+  position: fixed;
+  z-index: 100004 !important;
+}
 </style>
