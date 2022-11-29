@@ -4,8 +4,10 @@ import { ref } from '@vue/reactivity'
 import { isMobileTerminal } from '@/utils/flexible'
 import itemVue from './item.vue'
 import pinsVue from '@/views/pins/components/pins.vue'
+import gsap from 'gsap'
 import { useStore } from 'vuex'
 import { watch } from '@vue/runtime-core'
+import { useEventListener } from '@vueuse/core'
 
 const pexelsList = ref([])
 const store = useStore()
@@ -79,18 +81,54 @@ getPexlesData()
 // 控制pins展示
 const isVisiblePins = ref(false)
 
+// 监听浏览器后退按钮
+useEventListener(window, 'popstate', () => {
+  isVisiblePins.value = false
+})
+
 // 当前选中的 pins 属性
 const currentPins = ref({})
 
 const onToPins = item => {
-  console.log(item);
+  console.log(item, 'rerere');
   // 修改浏览器url
   history.pushState(null, null, `/pins/${item.id}`)
   currentPins.value = item
   isVisiblePins.value = true
 };
 
-
+const beforeEnter = el => {
+  gsap.set(el, {
+    scaleX: 0,
+    scaleY: 0,
+    transformOrigin: '0 0',
+    translateX: currentPins.value.location?.translateX,
+    translateY: currentPins.value.location?.translateY,
+    opacity: 0
+  })
+}
+const enter = (el, done) => {
+  gsap.to(el, {
+    duration: 0.3,
+    scaleX: 1,
+    scaleY: 1,
+    opacity: 1,
+    translateX: 0,
+    translateY: 0,
+    onComplete: done
+  })
+}
+const leave = (el, done) => {
+  gsap.to(el, {
+    duration: 0.3,
+    scaleX: 0,
+    scaleY: 0,
+    opacity: 0,
+    translateX: currentPins.value.location?.translateX,
+    translateY: currentPins.value.location?.translateY,
+    onComplete: done
+  })
+}
 </script>
 
 <template>
@@ -99,7 +137,7 @@ const onToPins = item => {
       <m-waterfall class="flex-1 w-full" :data="pexelsList" nodeKey="id" :column="isMobileTerminal ? 2 : 5"
         :picturePreReading="false">
         <template v-slot="{ item, width }">
-          <itemVue :data="item" :width="width" @click="onToPins(item)" />
+          <itemVue :data="item" :width="width" @click="onToPins" />
         </template>
       </m-waterfall>
     </m-infinite>
