@@ -3,6 +3,7 @@ import { getPexlesList } from '@/api/pexels'
 import { ref } from '@vue/reactivity'
 import { isMobileTerminal } from '@/utils/flexible'
 import itemVue from './item.vue'
+import pinsVue from '@/views/pins/components/pins.vue'
 import { useStore } from 'vuex'
 import { watch } from '@vue/runtime-core'
 
@@ -46,7 +47,6 @@ const getPexlesData = async () => {
 
   // 修改loading标记
   loading.value = false
-
 }
 
 // 通过此方法修改query，重新发起请求
@@ -76,11 +76,21 @@ watch(() => store.getters.searchText, val => {
 
 getPexlesData()
 
-const onToPins = items => {
-  console.log(items);
+// 控制pins展示
+const isVisiblePins = ref(false)
+
+// 当前选中的 pins 属性
+const currentPins = ref({})
+
+const onToPins = item => {
+  console.log(item);
   // 修改浏览器url
-  history.pushState(null, null, `pins/${items.id}`)
-}
+  history.pushState(null, null, `/pins/${item.id}`)
+  currentPins.value = item
+  isVisiblePins.value = true
+};
+
+
 </script>
 
 <template>
@@ -89,10 +99,16 @@ const onToPins = items => {
       <m-waterfall class="flex-1 w-full" :data="pexelsList" nodeKey="id" :column="isMobileTerminal ? 2 : 5"
         :picturePreReading="false">
         <template v-slot="{ item, width }">
-          <itemVue :data="item" :width="width" @click="onToPins" />
+          <itemVue :data="item" :width="width" @click="onToPins(item)" />
         </template>
       </m-waterfall>
     </m-infinite>
+
+
+    <!-- 响应内容展示 -->
+    <transition :css="false" @before-enter="beforeEnter" @enter="enter" @leave="leave">
+      <pins-vue v-if="isVisiblePins" :id="currentPins.id" />
+    </transition>
   </div>
 </template>
 

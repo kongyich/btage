@@ -2,7 +2,7 @@
 import { saveAs } from 'file-saver'
 import { message } from '@/libs'
 import { ref } from 'vue'
-import { useFullscreen } from '@vueuse/core';
+import { useElementBounding, useFullscreen } from '@vueuse/core';
 const props = defineProps({
   data: {
     type: Object,
@@ -28,6 +28,23 @@ const imgTarget = ref(null)
 const { enter: onImgFullScreen } = useFullscreen(imgTarget);
 
 const emits = defineEmits('click')
+
+const {
+  x: imgContainerX,
+  y: imgContainerY,
+  width: imgContainerWidth,
+  height: imgContainerHeight
+} = useElementBounding(imgTarget)
+
+// pins跳转记录，记录图片的中心点 （x | y 的位置 + 宽 ｜ 高的一半）
+const imgContainerCenter = computed(() => {
+  return {
+    translateX: parseInt(imgContainerX.value + imgContainerWidth.value / 2),
+    translateY: parseInt(imgContainerY.value + imgContainerHeight.value / 2)
+  }
+})
+
+
 const onToPinsClick = () => {
   emits('click', {
     id: props.data.id
