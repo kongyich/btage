@@ -47,7 +47,7 @@ const onPop = () => {
 
 
     <!-- 内容区 -->
-    <div class="xl:w-[80%] xl:h-full xl:mx-auto xl:rounded-lg xl:flex">
+    <div v-if="pexelData.title" class="xl:w-[80%] xl:h-full xl:mx-auto xl:rounded-lg xl:flex">
       <img class="w-screen mb-2 xl:w-3/5 xl:h-full xl:rounded-tl-lg xl:rounded-bl-lg" :src="pexelData.photo" alt="">
       <div class="xl:w-2/5 xl:h-full xl:bg-white xl:dark:bg-zinc-900 xl:rounded-tr-lg xl:rounded-tb-lg xl:p-3">
         <!-- pc下分享/收藏 -->
