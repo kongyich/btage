@@ -25,3 +25,11 @@ export const getThemes = () => {
     url: '/pexels/themes'
   })
 }
+
+
+// 获取制定图片的数据
+export const getPexelsFromId = id => {
+  return request({
+    url: `/pexels/${id}`
+  })
+}

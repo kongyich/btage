@@ -38,6 +38,9 @@ module.exports = {
       },
       variants: {
         scrollbars: ['dark']
+      },
+      backdropBlur: {
+        '4xl': '240px'
       }
     },
   },
