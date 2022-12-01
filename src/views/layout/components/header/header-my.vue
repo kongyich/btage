@@ -1,4 +1,6 @@
 <script setup>
+import { useRouter } from "vue-router";
+
 // 构建menu数据
 const menuAry = [
   {
@@ -20,12 +22,17 @@ const menuAry = [
     path: ''
   }
 ];
+
+const router = useRouter()
+const onToLogin = () => {
+  router.push('/login')
+};
 </script>
 
 <template>
   <m-popover class="flex items-center" placement="bottom_left">
     <template #reference>
-      <div
+      <div v-if="false"
         class="guide-my relative flex items-center p-0.5 rounded-sm cursor-pointer duration-200 outline-none hover:bg-zinc-100 dark:hover:bg-zinc-900">
         <!-- 头像 -->
         <img v-lazy class="w-3 h-3 rounded-sm"
@@ -38,9 +45,14 @@ const menuAry = [
         <!-- vip标记 -->
         <m-svg-icon name="vip" class="w-1.5 h-1.5 absolute right-[16px] bottom-0"></m-svg-icon>
       </div>
+
+      <div v-else>
+        <m-button class="guide-my" icon="profile" iconColor="#fff" @click="onToLogin"></m-button>
+      </div>
     </template>
 
-    <div class=" w-[140px] overflow-hidden">
+    <!-- 气泡 -->
+    <div v-if="false" class=" w-[140px] overflow-hidden">
       <div class="flex items-center p-1 cursor-pointer rounded hover:bg-zinc-100/60 dark:hover:bg-zinc-800"
         v-for="item in menuAry" :key="item.id" @click="onItemClick(item.path)">
         <m-svg-icon :name="item.icon" class="w-1.5 h-1.5 mr-1" fillClass="fill-zinc-900 dark:fill-zinc-300">
