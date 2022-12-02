@@ -1,15 +1,26 @@
 <script setup>
+import { ref } from 'vue'
 import {
   Form as VeeForm,
   Field as VeeField,
   ErrorMessage as VeeErrorMessage
 } from 'vee-validate'
+import SliderCaptchaVue from './slider-captcha.vue'
 import { validateUsername, validatePassword } from '../validate';
 
+
+// 控制sliderCaptcha的展示
+const isSliderCaptchaVisible = ref(false)
 // 表单校验通过之后才会出发登陆按钮
 const onLoginHandler = () => {
-
+  isSliderCaptchaVisible.value = true
 }
+
+// 验证通过
+const onCaptchaSuccess = () => {
+  isSliderCaptchaVisible.value = false
+  console.log('登陆');
+};
 </script>
 
 <template>
@@ -48,6 +59,9 @@ const onLoginHandler = () => {
         </m-button>
       </vee-form>
     </div>
+
+    <slider-captcha-vue v-if="isSliderCaptchaVisible" @close="isSliderCaptchaVisible = false"
+      @success="onCaptchaSuccess" />
   </div>
 </template>
 
