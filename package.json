@@ -26,6 +26,7 @@
     "tailwind-scrollbar": "^2.0.1",
     "tailwindcss": "^3.0.23",
     "typescript": "^4.6.4",
+    "vee-validate": "^4.7.3",
     "vite": "^3.0.7",
     "vite-plugin-svg-icons": "^2.0.1",
     "vue-tsc": "^0.39.5"
