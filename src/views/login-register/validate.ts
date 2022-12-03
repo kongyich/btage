@@ -25,3 +25,11 @@ export const validatePassword = value => {
   }
   return true
 }
+
+// 确认密码的表单教研
+export const validateConfirmPassword = (val, password) => {
+  if (val !== password[0]) {
+    return '两次密码输入必须一致'
+  }
+  return true
+}

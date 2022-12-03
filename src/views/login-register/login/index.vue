@@ -47,6 +47,10 @@ const onLogin = async () => {
   }
   router.push('/')
 };
+
+const toReg = () => {
+  router.push('/register')
+};
 </script>
 
 <template>
@@ -77,7 +81,7 @@ const onLogin = async () => {
 
         <!-- 去注册 -->
         <div class="pt-1 pb-3 leading-[0px] text-right">
-          <a
+          <a @click="toReg"
             class=" inline-block p-1 text-zinc-400 text-right dark:text-zinc-600 hover:text-zinc-600 dark:hover:text-zinc-400 text-sm duration-300 cursor-pointer">去注册</a>
         </div>
 
