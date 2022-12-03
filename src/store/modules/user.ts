@@ -1,5 +1,6 @@
 import md5 from 'md5'
-import { loginUser } from '@/api/sys'
+import { loginUser, getProfile } from '@/api/sys'
+import { message } from '@/libs'
 
 // user 模块
 export default {
@@ -8,12 +9,17 @@ export default {
   state: () => {
     return {
       // 登录的token
-      token: ''
+      token: '',
+      userInfo: {}
     }
   },
   mutations: {
     setToken(state, newToken) {
       state.token = newToken
+    },
+    // 保存用户信息
+    setUserInfo(state, newUserInfo) {
+      state.userInfo = newUserInfo
     }
   },
 
@@ -28,6 +34,15 @@ export default {
 
       // 保存token
       context.commit('setToken', res.token)
+      context.dispatch('profile')
+    },
+
+    // 获取用户信息
+    async profile(context) {
+      const res = await getProfile()
+      context.commit('setUserInfo', res)
+      // 提示
+      message('success', `欢迎！`)
     }
   }
 }
