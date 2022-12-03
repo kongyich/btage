@@ -12,3 +12,6 @@ export const NORMAL_CATEGORYS_DATA = [ALL_CATEGORY_ITEM, { "id": "web_app_icon",
 export const TYPE_LIGHT = 'type_light'
 export const TYPE_DARK = 'type_dark'
 export const TYPE_SYSTEM = 'TYPE_SYSTEM'
+
+// 登录方式
+export const LOGIN_TYPE_USERNAME = 'username'

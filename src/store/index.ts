@@ -4,6 +4,7 @@ import category from './modules/category'
 import theme from './modules/theme'
 import app from './modules/app'
 import search from './modules/search'
+import user from './modules/user'
 import createPersistedstate from 'vuex-persistedstate'
 
 const store = createStore({
@@ -12,14 +13,15 @@ const store = createStore({
     theme,
     category,
     app,
-    search
+    search,
+    user
   },
   plugins: [
     createPersistedstate({
       // 指定保存到 localStorge 中的key
       key: 'categorys',
       // 需要保存的模块
-      paths: ['category', 'theme', 'search']
+      paths: ['category', 'theme', 'search', 'user']
     })
   ]
 })

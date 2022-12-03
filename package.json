@@ -21,6 +21,7 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.0.3",
     "autoprefixer": "^10.4.2",
+    "md5": "^2.3.0",
     "postcss": "^8.4.8",
     "sass": "^1.45.0",
     "tailwind-scrollbar": "^2.0.1",
