@@ -33,6 +33,33 @@ const regForm = ref({
 // loading
 const loading = ref(false)
 console.log(route)
+
+// 注册
+const onRegister = async () => {
+  loading.value = true
+  try {
+    const payload = {
+      username: regForm.value.username,
+      password: regForm.value.password
+    }
+
+    // 触发注册
+    await store.dispatch('register', {
+      ...payload,
+      ...route.query
+    })
+
+    // 注册成功，触发登录
+    await store.dispatch('login', {
+      ...payload,
+      loginType: LOGIN_TYPE_USERNAME
+    })
+  } finally {
+    loading.value = false
+  }
+
+  router.push('/')
+};
 </script>
 
 <template>

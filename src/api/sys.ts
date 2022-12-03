@@ -18,6 +18,15 @@ export const loginUser = data => {
   })
 }
 
+// 注册
+export const registerUser = data => {
+  return request({
+    url: '/sys/register',
+    method: 'POST',
+    data
+  })
+}
+
 // 获取用户信息
 export const getProfile = () => {
   return request({
