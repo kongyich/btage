@@ -1,5 +1,7 @@
 <script setup>
 import { useRouter } from "vue-router";
+import { useStore } from 'vuex';
+import { confirm } from '@/libs'
 
 // 构建menu数据
 const menuAry = [
@@ -27,6 +29,17 @@ const router = useRouter()
 const onToLogin = () => {
   router.push('/login')
 };
+
+const store = useStore()
+// menu点击事件
+const onItemClick = item => {
+  if (item.id === 2) {
+    // 退出登录
+    confirm('确定要退出登录？').then(() => {
+      store.dispatch('logout')
+    })
+  }
+};
 </script>
 
 <template>
@@ -53,7 +66,7 @@ const onToLogin = () => {
     <!-- 气泡 -->
     <div v-if="$store.getters.token" class=" w-[140px] overflow-hidden">
       <div class="flex items-center p-1 cursor-pointer rounded hover:bg-zinc-100/60 dark:hover:bg-zinc-800"
-        v-for="item in menuAry" :key="item.id" @click="onItemClick(item.path)">
+        v-for="item in menuAry" :key="item.id" @click="onItemClick(item)">
         <m-svg-icon :name="item.icon" class="w-1.5 h-1.5 mr-1" fillClass="fill-zinc-900 dark:fill-zinc-300">
         </m-svg-icon>
         <span class="text-zinc-800 dark:text-zinc-300 text-sm">{{

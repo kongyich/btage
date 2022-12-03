@@ -12,7 +12,6 @@ import { useStorage } from '@vueuse/core';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 
-
 // 控制sliderCaptcha的展示
 const isSliderCaptchaVisible = ref(false)
 // 表单校验通过之后才会出发登陆按钮
@@ -24,7 +23,6 @@ const onLoginHandler = () => {
 const onCaptchaSuccess = () => {
   isSliderCaptchaVisible.value = false
   onLogin()
-  console.log('登陆');
 };
 
 const loading = ref(false)
@@ -48,7 +46,6 @@ const onLogin = async () => {
     loading.value = false
   }
   router.push('/')
-
 };
 </script>
 
@@ -83,7 +80,6 @@ const onLogin = async () => {
           <a
             class=" inline-block p-1 text-zinc-400 text-right dark:text-zinc-600 hover:text-zinc-600 dark:hover:text-zinc-400 text-sm duration-300 cursor-pointer">去注册</a>
         </div>
-
 
         <m-button :loading="loading" class="w-full dark:bg-zinc-900 xl:dark:bg-zinc-800">
           登录

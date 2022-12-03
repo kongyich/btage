@@ -43,6 +43,16 @@ export default {
       context.commit('setUserInfo', res)
       // 提示
       message('success', `欢迎！`)
+    },
+
+    // 退出登录
+    logout(context) {
+      // 清空token
+      context.commit('setToken', '')
+      // 清空用户信息
+      context.commit('setUserInfo', {})
+      // 刷新页面
+      location.reload()
     }
   }
 }
