@@ -31,6 +31,13 @@ service.interceptors.response.use(res => {
 
   // 请求错误
   return Promise.reject(new Error(message))
+}, error => {
+  // 处理token超时
+  if (error.response?.data?.code === 401) {
+    store.dispatch('logout')
+  }
+
+  return Promise.reject(error)
 })
 
 export default service
