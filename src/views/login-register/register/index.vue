@@ -101,15 +101,6 @@ const onRegister = async () => {
               去登录
             </a>
           </div>
-          <!-- <div class="text-center">
-            <a
-              class="text-zinc-400 dark:text-zinc-600 hover:text-zinc-600 dark:hover:text-zinc-400 text-sm duration-400"
-              href="https://m.imooc.com/newfaq?id=89"
-              target="__black"
-            >
-              注册即同意《慕课网注册协议》
-            </a>
-          </div> -->
         </div>
 
         <m-button class="w-full dark:bg-zinc-900 xl:dark:bg-zinc-800" :isActiveAnim="false" :loading="loading">
