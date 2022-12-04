@@ -1,9 +1,36 @@
 <script setup>
 import { ref } from 'vue'
 import { useStore } from 'vuex'
+import { isMobileTerminal } from '@/utils/flexible'
 const store = useStore()
 
 const userInfo = ref({ ...store.getters.userInfo });
+
+/**
+ * 选择头像
+*/
+const inputFileTarget = ref(null)
+
+const onAvatarClick = () => {
+  inputFileTarget.value.click()
+}
+
+/**
+ * 移动端：退出登录
+ */
+const onLogoutClick = () => {
+  confirm('确定要退出登录吗？').then(() => {
+    store.dispatch('user/logout')
+  })
+}
+
+/**
+ * 移动端后退处理
+ */
+const onNavbarLeftClick = () => {
+  // 配置跳转方式
+  router.back()
+}
 </script>
 
 <template>
