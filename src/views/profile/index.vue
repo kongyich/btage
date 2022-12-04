@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from 'vue'
+import { putProfile } from '@/api/sys'
 import { useStore } from 'vuex'
+import { message, confirm } from '@/libs'
 import { isMobileTerminal } from '@/utils/flexible'
 const store = useStore()
 
@@ -31,6 +33,19 @@ const onNavbarLeftClick = () => {
   // 配置跳转方式
   router.back()
 }
+
+/**
+ * 修改个人信息
+ */
+const loading = ref(false)
+const onChangeProfile = async () => {
+  loading.value = true
+  await putProfile(userInfo.value)
+  message('success', '用户信息修改成功')
+  // 更新 vuex
+  store.commit('setUserInfo', userInfo.value)
+  loading.value = false
+};
 </script>
 
 <template>
