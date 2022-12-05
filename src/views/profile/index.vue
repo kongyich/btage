@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { putProfile } from '@/api/sys'
 import { useStore } from 'vuex'
 import { message, confirm } from '@/libs'
+import changeAvatarVue from './components/change-avatar.vue'
 import { isMobileTerminal } from '@/utils/flexible'
 const store = useStore()
 
@@ -13,9 +14,43 @@ const userInfo = ref({ ...store.getters.userInfo });
 */
 const inputFileTarget = ref(null)
 
+/**
+ * 控制dialog的展示
+*/
+const isDialogVisible = ref(false)
+
+/**
+ * 选中的图片
+*/
+const currentBlob = ref('')
+
 const onAvatarClick = () => {
   inputFileTarget.value.click()
 }
+
+const onSelectImgHandler = () => {
+  // 获取选中的文件
+  const imgFile = inputFileTarget.value.files[0]
+  // 生成blob对象
+  const blob = URL.createObjectURL(imgFile)
+  // 获取到blob（类文件对象）
+  currentBlob.value = blob
+  // 展示dialog
+  isDialogVisible.value = true
+  console.log(imgFile);
+}
+
+/**
+ * 监听 dialog 关闭
+ * 当两次选择文件，是同一个的时候，change的回调不会被再次触发
+ * 想要解决这个问题，只需要在每次选择的图片不被使用之后，清空掉 inputFileTarget 的 value
+ */
+watch(isDialogVisible, (val) => {
+  if (!val) {
+    // 防止 change 不重复触发
+    inputFileTarget.value.value = null
+  }
+})
 
 /**
  * 移动端：退出登录
@@ -120,6 +155,16 @@ const onChangeProfile = async () => {
         </m-button>
       </div>
     </div>
+
+
+
+    <m-dialog v-if="!isMobileTerminal" title="裁剪头像" v-model="isDialogVisible">
+      <change-avatar-vue :blob="currentBlob" @close="isDialogVisible = false" />
+    </m-dialog>
+
+    <m-popup v-else :class="{ 'h-screen': isDialogVisible }" v-model="isDialogVisible">
+      <change-avatar-vue :blob="currentBolb" @close="isDialogVisible = false"></change-avatar-vue>
+    </m-popup>
   </div>
 </template>
 
