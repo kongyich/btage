@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { putProfile } from '@/api/sys'
 import { useStore } from 'vuex'
 import { message, confirm } from '@/libs'
