@@ -163,7 +163,7 @@ const onChangeProfile = async () => {
     </m-dialog>
 
     <m-popup v-else :class="{ 'h-screen': isDialogVisible }" v-model="isDialogVisible">
-      <change-avatar-vue :blob="currentBolb" @close="isDialogVisible = false"></change-avatar-vue>
+      <change-avatar-vue :blob="currentBolb" @close="isDialogVisible = false" />
     </m-popup>
   </div>
 </template>

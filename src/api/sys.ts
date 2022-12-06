@@ -42,3 +42,11 @@ export const putProfile = data => {
     data
   })
 }
+
+
+// 获取oss上传凭证
+export const getSts = data => {
+  return request({
+    url: '/user/sts'
+  })
+}

@@ -15,3 +15,7 @@ export const TYPE_SYSTEM = 'TYPE_SYSTEM'
 
 // 登录方式
 export const LOGIN_TYPE_USERNAME = 'username'
+
+// oss上传区域
+export const REGION = 'oss-cn-beijing'
+export const BUCKET = 'imooc-front'
