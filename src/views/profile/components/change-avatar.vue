@@ -97,7 +97,7 @@ const putObjectToOSS = async (file) => {
  */
 const onChangeProfile = async (avatar) => {
   // 更新本地数据
-  store.commit('user/setUserInfo', {
+  store.commit('setUserInfo', {
     ...store.getters.userInfo,
     avatar
   })
