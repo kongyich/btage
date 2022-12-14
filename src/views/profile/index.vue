@@ -5,6 +5,7 @@ import { useStore } from 'vuex'
 import { message, confirm } from '@/libs'
 import changeAvatarVue from './components/change-avatar.vue'
 import { isMobileTerminal } from '@/utils/flexible'
+import { useRouter } from 'vue-router'
 const store = useStore()
 
 const userInfo = ref({ ...store.getters.userInfo });
@@ -61,10 +62,13 @@ const onLogoutClick = () => {
   })
 }
 
+const router = useRouter()
 /**
  * 移动端后退处理
  */
 const onNavbarLeftClick = () => {
+  // 移动端路由跳转动画
+  store.commit('changeRouteType', 'back')
   // 配置跳转方式
   router.back()
 }

@@ -1,3 +1,5 @@
+import { isMobileTerminal } from "@/utils/flexible"
+
 export default {
   categorys: state => state.category.categorys,
   themeType: state => state.theme.themeType,
@@ -22,5 +24,14 @@ export default {
   token: state => state.user.token,
 
   // 用户信息
-  userInfo: state => state.user.userInfo
+  userInfo: state => state.user.userInfo,
+
+  // 路由跳转方法
+  routeType: state => {
+    // pc 端无跳转动画
+    if (!isMobileTerminal.value) {
+      return 'none'
+    }
+    return state.app.routeType
+  }
 }

@@ -2,6 +2,7 @@
 import { getPexelsFromId } from '@/api/pexels'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
 import { isMobileTerminal } from '../../../utils/flexible';
 
 const props = defineProps({
@@ -22,7 +23,10 @@ getPexelsData();
 
 // 关闭按钮
 const router = useRouter()
+const store = useStore()
 const onPop = () => {
+  // 移动端路由跳转动画
+  store.dispatch('changeRouteType', 'back')
   router.back()
 };
 </script>

@@ -27,6 +27,8 @@ const menuAry = [
 
 const router = useRouter()
 const onToLogin = () => {
+  // 移动端路由跳转动画
+  store.dispatch('changeRouteType', 'push')
   router.push('/login')
 };
 
@@ -40,6 +42,8 @@ const onItemClick = item => {
     })
     return
   }
+  // 移动端路由跳转动画
+  store.commit('changeRouteType', 'push')
   router.push(item.path)
 };
 </script>

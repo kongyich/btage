@@ -27,12 +27,23 @@
 import navigationVue from './components/navigation/index.vue'
 import listVue from './components/list/index.vue'
 import { isMobileTerminal } from '../../utils/flexible'
-import store from '@/store';
+import { useStore } from 'vuex';
 import getters from '@/store/getters';
+import { useRouter } from 'vue-router';
 
+const store = useStore()
+const router = useRouter()
 // vip click
 const onVipClick = () => { }
-const onMyClick = () => { }
+const onMyClick = () => {
+  // 移动端路由跳转动画
+  store.commit('changeRouteType', 'push')
+  if (store.getters.token) {
+    router.push('/profile')
+  } else {
+    router.push('/login')
+  }
+}
 </script>
 
 <style>

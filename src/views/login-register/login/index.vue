@@ -49,6 +49,8 @@ const onLogin = async () => {
 };
 
 const toReg = () => {
+  // 移动端路由跳转动画
+  store.commit('changeRouteType', 'push')
   router.push('/register')
 };
 </script>

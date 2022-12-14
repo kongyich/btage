@@ -9,7 +9,10 @@ export default {
       currentCategory: ALL_CATEGORY_ITEM,
 
       // 搜索的文本
-      searchText: ''
+      searchText: '',
+
+      // 路由跳转类型
+      routeType: 'none'
     }
   },
   mutations: {
@@ -21,6 +24,11 @@ export default {
     // 修改searchText
     changeSearchText(state, newSearchVal) {
       state.searchText = newSearchVal
+    },
+
+    // 修改routerType
+    changeRouteType(state, newRouteType) {
+      state.routeType = newRouteType
     }
   },
   actions: {}
