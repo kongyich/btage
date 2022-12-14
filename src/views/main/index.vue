@@ -1,6 +1,6 @@
 <template>
-  <div
-    class=" h-full overflow-auto bg-white dark:bg-zinc-80 duration-500 scrollbar-thin scrollbar-thumb-transparent xl:scrollbar-thumb-zinc-200 xl:dark:scrollbar-thumb-zinc-900 scrollbar-track-transparent">
+  <div ref="containerTarget"
+    class="h-full overflow-auto bg-white dark:bg-zinc-80 duration-500 scrollbar-thin scrollbar-thumb-transparent xl:scrollbar-thumb-zinc-200 xl:dark:scrollbar-thumb-zinc-900 scrollbar-track-transparent">
     <navigation-vue />
 
     <div class=" max-w-screen-xl mx-auto relative m-1 xl:mt-4">
@@ -35,10 +35,25 @@ import listVue from './components/list/index.vue'
 import { isMobileTerminal } from '../../utils/flexible'
 import { useStore } from 'vuex';
 import getters from '@/store/getters';
+import { ref } from 'vue'
 import { useRouter } from 'vue-router';
+import { useScroll } from '@vueuse/core';
+import { onActivated } from '@vue/runtime-core'
 
 const store = useStore()
 const router = useRouter()
+const containerTarget = ref(null)
+
+// 记录滚动
+const { y: containerTargetScrollY } = useScroll(containerTarget)
+// 被缓存的组件再次可见时
+onActivated(() => {
+  if (!containerTarget.value) {
+    return
+  }
+  containerTarget.value.scrollTop = containerTargetScrollY.value
+})
+
 // vip click
 const onVipClick = () => { }
 const onMyClick = () => {
