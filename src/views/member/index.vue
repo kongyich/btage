@@ -64,6 +64,7 @@ const onChangeCurrentPay = (item) => {
         </div>
         <p class="mt-1 text-sm text-zinc-500">{{ currentPayData.desc }}</p>
         <!-- 支付 -->
+        <m-count-down :time="1000 * 60"></m-count-down>
         <!-- <payment-vue class="mt-4" :payData="currentPayData" /> -->
       </div>
     </div>
