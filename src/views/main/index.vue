@@ -55,7 +55,15 @@ onActivated(() => {
 })
 
 // vip click
-const onVipClick = () => { }
+const onVipClick = () => {
+  // 移动端路由跳转动画
+  store.commit('changeRouteType', 'push')
+  if (store.getters.token) {
+    router.push('/member')
+  } else {
+    router.push('/login')
+  }
+}
 const onMyClick = () => {
   // 移动端路由跳转动画
   store.commit('changeRouteType', 'push')
