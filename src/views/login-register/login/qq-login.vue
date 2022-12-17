@@ -1,5 +1,6 @@
 <script>
 import { onMounted } from "@vue/runtime-core";
+import broadcast from './brodacast'
 
 // QQ 登录的 URL
 const QQ_LOGIN_URL =
@@ -27,6 +28,9 @@ onMounted(() => {
       nickname,
       figureurl_qq_2
     }
+
+    broadcast.send(oauthObj)
+    window.close()
   })
 })
 
@@ -39,6 +43,11 @@ const onQQLogin = () => {
 const openQQWindow = () => {
   window.open(QQ_LOGIN_URL, 'oauth2Login_10609',
     'height=525,width=585, toolbar=no, menubar=no, scrollbars=no, status=no, location=yes, resizable=yes')
+
+  // 等待
+  broadcast.wait().then((oauthobj) => {
+    broadcast.clear()
+  })
 }
 </script>
 
