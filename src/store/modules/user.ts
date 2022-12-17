@@ -42,6 +42,11 @@ export default {
         password: password ? md5(password) : ''
       })
 
+      // 判断扫码是否需要注册
+      if (res.code === 204) {
+        return res.code
+      }
+
       // 保存token
       context.commit('setToken', res.token)
       context.dispatch('profile')

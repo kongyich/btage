@@ -1,6 +1,7 @@
 <script>
 import { onMounted } from "@vue/runtime-core";
 import broadcast from './brodacast'
+import { oauthLogin } from './oauth'
 
 // QQ 登录的 URL
 const QQ_LOGIN_URL =
@@ -47,6 +48,8 @@ const openQQWindow = () => {
   // 等待
   broadcast.wait().then((oauthobj) => {
     broadcast.clear()
+
+    oauthLogin('QQ', oauthobj)
   })
 }
 </script>
