@@ -31,6 +31,9 @@ onMounted(() => {
     }
 
     broadcast.send(oauthObj)
+
+    // 移动端下没有窗口的概念
+    oauthLogin('QQ', oauthObj)
     window.close()
   })
 })
