@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { LOGIN_TYPE_USERNAME } from '@/constants'
+import qqLoginVue from './qq-login.vue'
 import {
   Form as VeeForm,
   Field as VeeField,
@@ -91,6 +92,12 @@ const toReg = () => {
           登录
         </m-button>
       </vee-form>
+
+
+      <!-- 第三方登录 -->
+      <!-- qq登录 -->
+      <qq-login-vue />
+
     </div>
 
     <slider-captcha-vue v-if="isSliderCaptchaVisible" @close="isSliderCaptchaVisible = false"
