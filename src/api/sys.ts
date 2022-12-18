@@ -69,3 +69,16 @@ export const getWXLoginToken = (appid, secret, code) => {
     }
   })
 }
+
+/**
+ * 获取微信登录的 用户数据
+ */
+export const getWXLoginUserInfo = (accessToken, openid) => {
+  return request({
+    url: '/sys/wxlogin/userinfo',
+    params: {
+      accessToken,
+      openid
+    }
+  })
+}

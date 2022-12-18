@@ -9,7 +9,6 @@
 import { getWXLoginData, getWXLoginToken, getWXLoginUserInfo } from '@/api/sys'
 import brodacast from './brodacast'
 import { oauthLogin } from './oauth'
-import { LOGIN_TYPE_WX } from '@/constants'
 
 /**
  * 微信登录成功之后的窗口数据解析
@@ -58,7 +57,7 @@ const onWeiXinLogin = async () => {
     )
     console.log(nickname, headimgurl)
     // 执行登录操作
-    oauthLogin(LOGIN_TYPE_WX, {
+    oauthLogin('WX', {
       openid,
       nickname,
       headimgurl
