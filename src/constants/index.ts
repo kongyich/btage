@@ -22,3 +22,8 @@ export const BUCKET = 'imooc-front'
 
 // 兔小巢反馈地址
 export const FEEDBACK_URL = 'https://support.qq.com/product/383681'
+
+// 微博APP Key
+export const WEI_BO_APP_KEY = '3454329089'
+// 微博用户的 UID
+export const WEI_BO_UID = '5984245953'

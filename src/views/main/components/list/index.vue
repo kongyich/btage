@@ -128,7 +128,7 @@ const leave = (el, done) => {
     translateY: currentPins.value.location?.translateY,
     onComplete: done
   })
-}
+};
 </script>
 
 <template>
