@@ -34,7 +34,7 @@ import Driver from 'driver.js'
 import 'driver.js/dist/driver.min.css'
 import steps from './steps'
 import { onMounted } from 'vue'
-// import { FEEDBACK_URL } from '@/constants'
+import { FEEDBACK_URL } from '@/constants'
 
 /**
  * 引导页处理
@@ -61,9 +61,9 @@ const onGuideClick = () => {
 /**
  * 反馈处理
  */
-// const onToFeedback = () => {
-//   window.open(FEEDBACK_URL, '_blank')
-// }
+const onToFeedback = () => {
+  window.open(FEEDBACK_URL, '_blank')
+}
 </script>
 
 <style lang="scss" scoped>
