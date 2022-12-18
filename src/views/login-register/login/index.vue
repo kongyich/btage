@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import { LOGIN_TYPE_USERNAME } from '@/constants'
 import qqLoginVue from './qq-login.vue'
+import wechatLoginVue from './wechat-login.vue'
 import {
   Form as VeeForm,
   Field as VeeField,
@@ -97,6 +98,8 @@ const toReg = () => {
       <!-- 第三方登录 -->
       <!-- qq登录 -->
       <qq-login-vue />
+      <!-- 微信登录 -->
+      <wechat-login-vue />
 
     </div>
 

@@ -50,3 +50,22 @@ export const getSts = data => {
     url: '/user/sts'
   })
 }
+
+// 微信登录前置数据获取
+export const getWXLoginData = data => {
+  return request({
+    url: '/sys/wxlogin/data'
+  })
+}
+
+// 微信登录获取access_token
+export const getWXLoginToken = (appid, secret, code) => {
+  return request({
+    url: '/sys/wxlogin/access_token',
+    params: {
+      appid,
+      secret,
+      code
+    }
+  })
+}
