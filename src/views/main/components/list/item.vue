@@ -59,7 +59,6 @@ const imgContainerCenter = () => {
 //   }
 // })
 
-
 const onToPinsClick = () => {
   emits('click', {
     id: props.data.id,
